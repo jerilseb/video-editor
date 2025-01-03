@@ -56,16 +56,16 @@ def extract_screenshot(video_file, timestamp):
             os.unlink(output_path)
 
 # Create the Gradio interface
-demo = gr.Interface(
-    fn=extract_screenshot,
-    inputs=[
-        gr.Video(label="Upload Video"),
-        gr.Number(label="Timestamp (seconds)", value=0)
-    ],
-    outputs=gr.Image(label="Screenshot"),
-    title="Video Screenshot Extractor",
-    description="Upload a video and specify a timestamp to extract a screenshot from that moment."
-)
+with gr.Blocks() as demo:
+    gr.Markdown("# Video Screenshot Extractor")
+    gr.Markdown("Upload a video and specify a timestamp to extract a screenshot from that moment.")
+    with gr.Row():
+        video_input = gr.Video(label="Upload Video")
+        timestamp_input = gr.Number(label="Timestamp (seconds)", value=0)
+    screenshot_output = gr.Image(label="Screenshot")
+    
+    extract_button = gr.Button("Extract Screenshot")
+    extract_button.click(fn=extract_screenshot, inputs=[video_input, timestamp_input], outputs=screenshot_output)
 
 if __name__ == "__main__":
     demo.launch()
