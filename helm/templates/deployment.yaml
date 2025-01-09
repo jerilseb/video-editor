@@ -16,9 +16,9 @@ spec:
         app: {{ .Release.Name }}
     spec:
       tolerations:
-      - key: "size"
+      - key: "lifecycle"
         operator: "Equal"
-        value: "small"
+        value: "spot"
       containers:
       - name: video-editor
         image: {{ .Values.app.image }}:{{ required "app.version is required" .Values.app.version }}
