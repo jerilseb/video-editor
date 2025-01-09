@@ -21,7 +21,7 @@ spec:
         value: "small"
       containers:
       - name: video-editor
-        image: {{ .Values.app.image }}
+        image: {{ .Values.app.image }}:{{ required "app.version is required" .Values.app.version }}
         env:
         - name: OPENAI_API_KEY
           valueFrom:
