@@ -1,0 +1,11 @@
+app:
+  image: jeril/video-editor
+
+ingress:
+  host: ""
+  secret: video-editor-tls
+
+cert:
+  issuer: ""
+
+replicas: 1

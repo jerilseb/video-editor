@@ -1,0 +1,9 @@
+.aider*
+.env*
+.venv
+*.mp4
+*.jpg
+*.png
+*.mp3
+*.wav
+__pycache__

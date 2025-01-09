@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: "{{ .Release.Name }}-ingress"
+  namespace: {{ .Release.Name }}
+  annotations:
+    cert-manager.io/cluster-issuer: {{ required "The cert.issuer value is needed." .Values.cert.issuer }}
+    nginx.ingress.kubernetes.io/proxy-body-size: "500m"  # Increase the body size limit to fix 413 error
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: "{{ .Release.Name }}-service"
+                port:
+                  number: 7860
+
+  tls:
+    - hosts:
+        - {{ required "The ingress.host value is needed." .Values.ingress.host }}
+      secretName: {{ .Values.ingress.secret }}
