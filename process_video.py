@@ -3,6 +3,7 @@ import openai
 import shutil
 from dotenv import load_dotenv
 from prompt import system_prompt
+import gradio as gr
 
 load_dotenv()
 
@@ -60,6 +61,7 @@ def process_video(video_file, edit_instructions):
             return None
 
         return output_path
+        # return gr.update(value=output_path, visible=True)
 
     except Exception as e:
         print(f"Error processing video: {e}")
