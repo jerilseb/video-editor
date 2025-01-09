@@ -19,6 +19,5 @@ with gr.Blocks() as demo:
 
 if __name__ == "__main__":
     demo.launch(
-        show_api=False,
-        show_settings=False,
+        show_api=False
     )
